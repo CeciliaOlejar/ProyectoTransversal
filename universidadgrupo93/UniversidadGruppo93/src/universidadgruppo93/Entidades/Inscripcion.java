@@ -13,8 +13,8 @@ public class Inscripcion {
     
      private int idInscripto;
     private double nota;
-    private int idMateria;
-    private int idAlumno;
+    private int materia;
+    private int alumno;
 
     public Inscripcion() {
     }
@@ -22,14 +22,14 @@ public class Inscripcion {
     public Inscripcion(int idInscripto, double nota, int idMateria, int idAlumno) {
         this.idInscripto = idInscripto;
         this.nota = nota;
-        this.idMateria = idMateria;
-        this.idAlumno = idAlumno;
+        this.materia = idMateria;
+        this.alumno = idAlumno;
     }
 
     public Inscripcion(double nota, int idMateria, int idAlumno) {
         this.nota = nota;
-        this.idMateria = idMateria;
-        this.idAlumno = idAlumno;
+        this.materia = idMateria;
+        this.alumno = idAlumno;
     }
 
     public int getIdInscripto() {
@@ -49,24 +49,24 @@ public class Inscripcion {
     }
 
     public int getIdMateria() {
-        return idMateria;
+        return materia;
     }
 
     public void setIdMateria(int idMateria) {
-        this.idMateria = idMateria;
+        this.materia = idMateria;
     }
 
     public int getIdAlumno() {
-        return idAlumno;
+        return alumno;
     }
 
     public void setIdAlumno(int idAlumno) {
-        this.idAlumno = idAlumno;
+        this.alumno = idAlumno;
     }
 
     @Override
     public String toString() {
-        return "Inscripcion{" + "idInscripto=" + idInscripto + ", nota=" + nota + ", idMateria=" + idMateria + ", idAlumno=" + idAlumno + '}';
+        return "Inscripcion{" + "idInscripto=" + idInscripto + ", nota=" + nota + ", idMateria=" + materia + ", idAlumno=" + alumno + '}';
     }
     
     
