@@ -8,21 +8,20 @@ import javax.swing.JOptionPane;
 public class Conexion {
     //localhost = Esta pc.
     private static final String URL = "jdbc:mariadb://localhost/"; //Static = Constante.
-    
     //Nombre base de datos:
-    private static final String DB = "UniversidadULPGrupo93";
+    private static final String DB = "universidadgrupo93";
     
     //Usuario "root" es el default.
     private static final String USUARIO = "root";
     
-    //Contraseña.
+    //Contraseña "" es la default.
     private static final String PASSWORD = "";
     /*------------------------------------------*/
     private static Connection connection;
     
     private Conexion (){}; //Constructor.
         
-    public static Connection getConexion(){
+    public static Connection getConexion(){ //Metodo para conectarse a la DB.
         
         if (connection == null) { /*1. Si no esta la conexión establecida,
             entra el el "TRYCATCH".*/
