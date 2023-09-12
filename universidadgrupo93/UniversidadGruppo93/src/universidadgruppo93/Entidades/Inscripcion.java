@@ -12,24 +12,24 @@ package universidadgruppo93.Entidades;
 public class Inscripcion {
     
     private int idInscripto;
+    private Alumno alumno;
+    private Materia materia;
     private double nota;
-    private int materia;
-    private int alumno;
 
     public Inscripcion() {
     }
 
-    public Inscripcion(int idInscripto, double nota, int idMateria, int idAlumno) {
+    public Inscripcion(int idInscripto, Alumno alumno, Materia materia, double nota) {
         this.idInscripto = idInscripto;
+        this.alumno = alumno;
+        this.materia = materia;
         this.nota = nota;
-        this.materia = idMateria;
-        this.alumno = idAlumno;
     }
 
-    public Inscripcion(double nota, int idMateria, int idAlumno) {
+    public Inscripcion(Alumno alumno, Materia materia, double nota) {
+        this.alumno = alumno;
+        this.materia = materia;
         this.nota = nota;
-        this.materia = idMateria;
-        this.alumno = idAlumno;
     }
 
     public int getIdInscripto() {
@@ -40,6 +40,22 @@ public class Inscripcion {
         this.idInscripto = idInscripto;
     }
 
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
+    }
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+
     public double getNota() {
         return nota;
     }
@@ -47,27 +63,9 @@ public class Inscripcion {
     public void setNota(double nota) {
         this.nota = nota;
     }
-
-    public int getIdMateria() {
-        return materia;
-    }
-
-    public void setIdMateria(int idMateria) {
-        this.materia = idMateria;
-    }
-
-    public int getIdAlumno() {
-        return alumno;
-    }
-
-    public void setIdAlumno(int idAlumno) {
-        this.alumno = idAlumno;
-    }
-
+    
     @Override
     public String toString() {
-        return "Inscripcion{" + "idInscripto=" + idInscripto + ", nota=" + nota + ", idMateria=" + materia + ", idAlumno=" + alumno + '}';
+        return "Inscripcion{" + "idInscripto=" + idInscripto + ", alumno=" + alumno + ", materia=" + materia + ", nota=" + nota + '}';
     }
-    
-    
 }
