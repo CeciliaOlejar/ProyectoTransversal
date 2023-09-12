@@ -13,13 +13,13 @@ public class Inscripcion {
     
     private int idInscripto;
     private Alumno alumno;
-    private materia materia;
+    private Materia materia;
     private double nota;
 
     public Inscripcion() {
     }
 
-    public Inscripcion(int idInscripto, Alumno alumno, materia materia, double nota) {
+    public Inscripcion(int idInscripto, Alumno alumno, Materia materia, double nota) {
         this.idInscripto = idInscripto;
         this.alumno = alumno;
         this.materia = materia;
@@ -52,7 +52,7 @@ public class Inscripcion {
         return materia;
     }
 
-    public void setMateria(materia materia) {
+    public void setMateria(Materia materia) {
         this.materia = materia;
     }
 
