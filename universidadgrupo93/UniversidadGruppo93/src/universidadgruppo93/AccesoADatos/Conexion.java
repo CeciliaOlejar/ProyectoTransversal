@@ -1,8 +1,8 @@
 package universidadgruppo93.AccesoADatos;
 
 import java.sql.Connection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Conexion {
@@ -24,16 +24,23 @@ public class Conexion {
         
     public static Connection getConexion(){
         
-        if (connection == null) {
+        if (connection == null) { /*1. Si no esta la conexión establecida,
+            entra el el "TRYCATCH".*/
             
-            try {
-                Class.forName("org.mariadb.jdbc.Driver"); //Drivers de libreria.
-            } catch (ClassNotFoundException ex) {
+            try { //Intenta:
+                //2.Verifica drivers de libreria.
+                Class.forName("org.mariadb.jdbc.Driver");
+                
+                //3.Config base de datos. Verifica info.
+                connection = DriverManager.getConnection(URL+DB,USUARIO,PASSWORD);
+                
+            } catch (ClassNotFoundException ex) { //Posible error n°1: Drivers.
                 JOptionPane.showMessageDialog(null, "Error al carga el driver de conexión.");
-            }
-            
+            } catch (SQLException ex) { //Posible error n°2: Base de datos.
+                JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos.");
+            } //Null en este caso: No se esta ejecutando desde ninguna ventana.
         }
-        return null;
+        //4. Si la conexión esta establecida, retorna la linea 43.
+        return connection;
     }
-    
 }
