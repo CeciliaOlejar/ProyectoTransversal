@@ -13,9 +13,9 @@ import universidadgruppo93.Entidades.Alumno;
 public class UniversidadGruppo93 {
 
     public static void main(String[] args) {
-        Connection con = Conexion.getConexion();
-        Alumno juan=new Alumno("Lopez", "Juan", 24356457, LocalDate.of(1985, 5, 23), true);
+        //Connection con = Conexion.getConexion();
+        Alumno luis=new Alumno("Majul", "Luis", 24332743, LocalDate.of(1985, 4, 12), true);
         AlumnoData alu=new AlumnoData();
-        alu.guardarAlumno(juan);
+        alu.guardarAlumno(luis);
     }
 }
