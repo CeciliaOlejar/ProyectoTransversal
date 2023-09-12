@@ -11,7 +11,7 @@ package universidadgruppo93.Entidades;
  */
 public class Inscripcion {
     
-     private int idInscripto;
+    private int idInscripto;
     private double nota;
     private int idMateria;
     private int idAlumno;
