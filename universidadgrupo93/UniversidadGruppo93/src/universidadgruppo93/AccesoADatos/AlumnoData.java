@@ -59,4 +59,5 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "Error al insertar alumno.");
         }
     }
+    
 }
