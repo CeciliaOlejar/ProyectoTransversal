@@ -1,9 +1,7 @@
 package universidadgruppo93;
 
-import java.sql.Connection;
 import java.time.LocalDate;
 import universidadgruppo93.AccesoADatos.AlumnoData;
-import universidadgruppo93.AccesoADatos.Conexion;
 import universidadgruppo93.Entidades.Alumno;
 
 /**
