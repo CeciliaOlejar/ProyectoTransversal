@@ -12,8 +12,16 @@ public class UniversidadGruppo93 {
 
     public static void main(String[] args) {
         //Connection con = Conexion.getConexion();
-        Alumno luis=new Alumno("Majul", "Luis", 24332743, LocalDate.of(1985, 4, 12), true);
+        //Alumno luis=new Alumno("Sosa", "Julio", 24332743, LocalDate.of(1999, 4, 12), true);
         AlumnoData alu=new AlumnoData();
-        alu.guardarAlumno(luis);
+        //alu.guardarAlumno(luis);
+        //alu.modificarAlumno(luis);
+        //alu.eliminarAlumno(7);
+        Alumno alumnoEncontrado= alu.buscarAlumno(4);
+        System.out.println("dni: "+alumnoEncontrado.getDni());
+        System.out.println("Apellido: "+ alumnoEncontrado.getApellido());
+        System.out.println("Nombre: "+ alumnoEncontrado.getNombre());
+        
+        
     }
 }
