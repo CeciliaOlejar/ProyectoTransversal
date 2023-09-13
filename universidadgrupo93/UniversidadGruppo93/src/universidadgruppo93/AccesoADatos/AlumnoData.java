@@ -138,5 +138,33 @@ public class AlumnoData {
         
     return alumno;
     }
-    
+    public Alumno buscarAlumnoPorDni(int dni){
+        Alumno alumno = null;
+        String sql="SELECT idAlumno, dni, apellido, nombre, fechaNac FROM alumno WHERE "
+                + "dni = ? AND estado = 1";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                alumno = new Alumno();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                alumno.setActivo(true);
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "No existe alumno con ese dni");
+            }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar un alumno por DNI");
+        }
+        
+    return alumno;
+    }
 }

@@ -17,7 +17,7 @@ public class UniversidadGruppo93 {
         //alu.guardarAlumno(luis);
         //alu.modificarAlumno(luis);
         //alu.eliminarAlumno(7);
-        Alumno alumnoEncontrado= alu.buscarAlumno(4);
+        Alumno alumnoEncontrado= alu.buscarAlumnoPorDni(24332743);
         System.out.println("dni: "+alumnoEncontrado.getDni());
         System.out.println("Apellido: "+ alumnoEncontrado.getApellido());
         System.out.println("Nombre: "+ alumnoEncontrado.getNombre());
