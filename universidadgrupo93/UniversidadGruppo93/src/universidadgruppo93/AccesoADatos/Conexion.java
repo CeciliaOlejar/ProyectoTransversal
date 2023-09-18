@@ -9,6 +9,7 @@ public class Conexion {
 
     //localhost = Esta pc.
     private static final String URL = "jdbc:mariadb://localhost/"; //Static = Constante.
+    
     //Nombre base de datos:
     private static final String DB = "universidadgrupo93";
 
@@ -18,12 +19,10 @@ public class Conexion {
     //Contraseña "" es la default.
     private static final String PASSWORD = "";
     /*------------------------------------------*/
+    
     private static Connection connection;
 
-    private Conexion() {
-    }
-
-    ; //Constructor.
+    private Conexion() {}; //Constructor.
         
     public static Connection getConexion() { //Metodo para conectarse a la DB.
 
