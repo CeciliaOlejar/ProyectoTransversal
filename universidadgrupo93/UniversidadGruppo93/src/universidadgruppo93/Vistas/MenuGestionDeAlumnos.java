@@ -5,18 +5,14 @@
  */
 package universidadgruppo93.Vistas;
 
-import java.beans.PropertyVetoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Gabi
  */
-public class MenuGestionDeAlumnos extends javax.swing.JFrame {
+public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form MenuGestionDeAlumnos
+     * Creates new form MenuGestionDeAlumnos2
      */
     public MenuGestionDeAlumnos() {
         initComponents();
@@ -31,37 +27,31 @@ public class MenuGestionDeAlumnos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtpDocumento = new javax.swing.JTextPane();
-        jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
+        jdtFecha = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
+        jbNuevoAlumno = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtpApellido = new javax.swing.JTextPane();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jtpNombre = new javax.swing.JTextPane();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jrEstado = new javax.swing.JRadioButton();
-        jIFBarraDeTitulo = new javax.swing.JInternalFrame();
-        jdtFecha = new com.toedter.calendar.JDateChooser();
-        jbNuevoAlumno = new javax.swing.JButton();
         jbEliminarAlumno = new javax.swing.JButton();
         jbGuardarAlumno = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jbSalirMenuAlumnos = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtpNombre = new javax.swing.JTextPane();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtpDocumento = new javax.swing.JTextPane();
+        jLabel6 = new javax.swing.JLabel();
+        jrEstado = new javax.swing.JRadioButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        setTitle("Alumnos");
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Alumno");
-
-        jLabel2.setText("Documento");
-
-        jScrollPane1.setViewportView(jtpDocumento);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setTitle("Alumno");
 
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -72,65 +62,14 @@ public class MenuGestionDeAlumnos extends javax.swing.JFrame {
 
         jLabel3.setText("Apellido");
 
-        jScrollPane2.setViewportView(jtpApellido);
-
-        jLabel4.setText("Nombre");
-
-        jScrollPane3.setViewportView(jtpNombre);
-
-        jLabel5.setText("Estado");
-
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Fecha de nacimiento");
-
-        jrEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrEstadoActionPerformed(evt);
-            }
-        });
-
-        jIFBarraDeTitulo.setClosable(true);
-        jIFBarraDeTitulo.setIconifiable(true);
-        jIFBarraDeTitulo.setMaximizable(true);
-        jIFBarraDeTitulo.setTitle("Alumnos");
-        jIFBarraDeTitulo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jIFBarraDeTitulo.setVisible(true);
-        jIFBarraDeTitulo.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                jIFBarraDeTituloInternalFrameClosed(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-                jIFBarraDeTituloInternalFrameClosing(evt);
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
-
-        javax.swing.GroupLayout jIFBarraDeTituloLayout = new javax.swing.GroupLayout(jIFBarraDeTitulo.getContentPane());
-        jIFBarraDeTitulo.getContentPane().setLayout(jIFBarraDeTituloLayout);
-        jIFBarraDeTituloLayout.setHorizontalGroup(
-            jIFBarraDeTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jIFBarraDeTituloLayout.setVerticalGroup(
-            jIFBarraDeTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         jbNuevoAlumno.setText("Nuevo");
         jbNuevoAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbNuevoAlumnoActionPerformed(evt);
             }
         });
+
+        jScrollPane2.setViewportView(jtpApellido);
 
         jbEliminarAlumno.setText("Eliminar");
         jbEliminarAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -146,6 +85,8 @@ public class MenuGestionDeAlumnos extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Nombre");
+
         jbSalirMenuAlumnos.setText("Salir");
         jbSalirMenuAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,12 +94,34 @@ public class MenuGestionDeAlumnos extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane3.setViewportView(jtpNombre);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Alumno");
+
+        jLabel2.setText("Documento");
+
+        jLabel5.setText("Estado");
+
+        jScrollPane1.setViewportView(jtpDocumento);
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Fecha de nacimiento");
+
+        jrEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrEstadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jIFBarraDeTitulo)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,13 +162,11 @@ public class MenuGestionDeAlumnos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(173, 173, 173)
                         .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jIFBarraDeTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,8 +185,8 @@ public class MenuGestionDeAlumnos extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                    .addComponent(jrEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jrEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -237,7 +198,7 @@ public class MenuGestionDeAlumnos extends javax.swing.JFrame {
                             .addComponent(jbGuardarAlumno)
                             .addComponent(jbSalirMenuAlumnos)))
                     .addComponent(jdtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
@@ -246,10 +207,6 @@ public class MenuGestionDeAlumnos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jrEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jrEstadoActionPerformed
 
     private void jbNuevoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoAlumnoActionPerformed
         // TODO add your handling code here:
@@ -267,52 +224,13 @@ public class MenuGestionDeAlumnos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirMenuAlumnosActionPerformed
 
-    private void jIFBarraDeTituloInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_jIFBarraDeTituloInternalFrameClosing
-        jIFBarraDeTitulo.hide();
-    }//GEN-LAST:event_jIFBarraDeTituloInternalFrameClosing
+    private void jrEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrEstadoActionPerformed
 
-    private void jIFBarraDeTituloInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_jIFBarraDeTituloInternalFrameClosed
-
-    }//GEN-LAST:event_jIFBarraDeTituloInternalFrameClosed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuGestionDeAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuGestionDeAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuGestionDeAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuGestionDeAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuGestionDeAlumnos().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JInternalFrame jIFBarraDeTitulo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
