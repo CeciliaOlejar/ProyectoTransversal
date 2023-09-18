@@ -75,6 +75,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuPMateria.setText("Materia");
 
         jMenuMateriaOpc1.setText("Formulario de Materias");
+        jMenuMateriaOpc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuMateriaOpc1ActionPerformed(evt);
+            }
+        });
         jMenuPMateria.add(jMenuMateriaOpc1);
 
         jMenuBar1.add(jMenuPMateria);
@@ -82,9 +87,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuPAdministracion.setText("Administración");
 
         jMenuAdminOpc1.setText("Manejo de Inscripciones");
+        jMenuAdminOpc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAdminOpc1ActionPerformed(evt);
+            }
+        });
         jMenuPAdministracion.add(jMenuAdminOpc1);
 
         jMenuAdminOpc2.setText("Manipulaciones de notas");
+        jMenuAdminOpc2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAdminOpc2ActionPerformed(evt);
+            }
+        });
         jMenuPAdministracion.add(jMenuAdminOpc2);
 
         jMenuBar1.add(jMenuPAdministracion);
@@ -92,6 +107,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuPConsultas.setText("Consultas");
 
         jMenuConsultasOpc1.setText("Alumnos por Materia");
+        jMenuConsultasOpc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuConsultasOpc1ActionPerformed(evt);
+            }
+        });
         jMenuPConsultas.add(jMenuConsultasOpc1);
 
         jMenuBar1.add(jMenuPConsultas);
@@ -124,16 +144,41 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuAlumnoOpc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAlumnoOpc1ActionPerformed
         MenuGestionDeAlumnos abrirMenuGDA = new MenuGestionDeAlumnos();
-        abrirMenuGDA.setVisible(true);
+        jDesktopPane1.add(abrirMenuGDA);
+        abrirMenuGDA.show();
     }//GEN-LAST:event_jMenuAlumnoOpc1ActionPerformed
 
     private void jMenuPSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPSalirActionPerformed
-        
+
     }//GEN-LAST:event_jMenuPSalirActionPerformed
 
     private void jMenuPAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPAlumnoActionPerformed
 
     }//GEN-LAST:event_jMenuPAlumnoActionPerformed
+
+    private void jMenuMateriaOpc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMateriaOpc1ActionPerformed
+        MenuGestionDeMaterias abrirMenuGDM = new MenuGestionDeMaterias();
+        jDesktopPane1.add(abrirMenuGDM);
+        abrirMenuGDM.show();
+    }//GEN-LAST:event_jMenuMateriaOpc1ActionPerformed
+
+    private void jMenuAdminOpc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAdminOpc1ActionPerformed
+        MenuInscripciones abrirMI = new MenuInscripciones();
+        jDesktopPane1.add(abrirMI);
+        abrirMI.show();
+    }//GEN-LAST:event_jMenuAdminOpc1ActionPerformed
+
+    private void jMenuAdminOpc2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAdminOpc2ActionPerformed
+        MenuCargaDeNotas abrirMCDN = new MenuCargaDeNotas();
+        jDesktopPane1.add(abrirMCDN);
+        abrirMCDN.show();
+    }//GEN-LAST:event_jMenuAdminOpc2ActionPerformed
+
+    private void jMenuConsultasOpc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuConsultasOpc1ActionPerformed
+        MenuConsultaAlumnosMateria abrirMCAM = new MenuConsultaAlumnosMateria();
+        jDesktopPane1.add(abrirMCAM);
+        abrirMCAM.show();
+    }//GEN-LAST:event_jMenuConsultasOpc1ActionPerformed
 
     /**
      * @param args the command line arguments
