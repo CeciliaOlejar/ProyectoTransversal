@@ -36,11 +36,17 @@ public class Conexion {
 
                 //3.Config base de datos. Verifica info.
                 connection = DriverManager.getConnection(URL + DB, USUARIO, PASSWORD);
+                
                 JOptionPane.showMessageDialog(null, "Conexion establecida con exito!!!");
+                
             } catch (ClassNotFoundException ex) { //Posible error n°1: Drivers.
+                
                 JOptionPane.showMessageDialog(null, "Error al carga el driver de conexión.");
+                
             } catch (SQLException ex) { //Posible error n°2: Base de datos.
+                
                 JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos.");
+                
             } //Null en este caso: No se esta ejecutando desde ninguna ventana.
 
         }
