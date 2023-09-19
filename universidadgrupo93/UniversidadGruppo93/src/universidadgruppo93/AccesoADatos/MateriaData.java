@@ -21,11 +21,7 @@ public class MateriaData {
         con = universidadgruppo93.AccesoADatos.Conexion.getConexion(); //Se conecta a la DB en caso de necesitarlo.
     }
 
-    public MateriaData(String matematica, int i, boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void guardarMateria(Materia materia) throws SQLException {
+    public void guardarMateria(Materia materia){
 
         try {
             //1.Inserción de datos a la tabla:
@@ -82,21 +78,46 @@ public class MateriaData {
                 materia = new Materia();
                 materia.setIdMateria(id);
                 materia.setNombre(rs.getString("Nombre"));
-                materia.setAnioMateria(rs.getInt("Año"));
+                materia.setAnioMateria(rs.getInt("Anio"));
                 materia.setActivo(true);
+                System.out.println("Encontramos tu materia: "+ materia.getNombre());
 
             } else {
-                JOptionPane.showMessageDialog(null, "Materia Creada");
+                JOptionPane.showMessageDialog(null, "Materia no encontrada");
             }
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al buscar Materia");
+            JOptionPane.showMessageDialog(null, "Error al buscar Materia" + ex);
         }
         return materia;
     }
+    
+    
+    public void modificarMateria(Materia materia){
+        String sql = "UPDATE materia SET nombre=?  WHERE idMateria=?";
+        PreparedStatement ps = null;
+         try {
+            ps = con.prepareStatement(sql);
+            
+//            ps.setInt(1, materia.getIdMateria()); //Campo 1.
+            ps.setString(1, materia.getNombre()); //Campo 2.
+//            ps.setInt(2, materia.getAnioMateria()); //Campo 3.
+//            ps.setBoolean(3, materia.isActivo()); //Campo 4.
+            ps.setInt(2, materia.getIdMateria());
+            
+            int exito = ps.executeUpdate();
 
-    public void guardarMateria(MateriaData materia1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Materia modificada Exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La materia nro de id: " + materia.getIdMateria() + " no existe");
+            }
+
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al modificar Materia" + ex);
+        }
     }
 }
