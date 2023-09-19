@@ -46,7 +46,7 @@ public class AlumnoData {
             //4.Obtiene la clave generada a Alumno.
             ResultSet rs = ps.getGeneratedKeys();
 
-            //5.Verifica si almenos hay una fila de datos (almacenado en ResultSet).
+            //5.Verifica si al menos hay una fila de datos (almacenado en ResultSet).
             if (rs.next()) {
                 alumno.setIdAlumno(rs.getInt(1));
                 /*Obtiene n° de clave generada*/
