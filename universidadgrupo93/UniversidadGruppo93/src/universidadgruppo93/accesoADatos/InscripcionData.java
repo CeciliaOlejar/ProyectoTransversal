@@ -17,5 +17,4 @@ public class InscripcionData {
     public InscripcionData() {
         con = Conexion.getConexion(); //Se conecta a la DB en caso de necesitarlo.
     }
-
 }
