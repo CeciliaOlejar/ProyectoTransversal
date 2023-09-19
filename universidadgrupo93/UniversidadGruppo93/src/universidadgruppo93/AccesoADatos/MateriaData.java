@@ -92,4 +92,32 @@ public class MateriaData {
         }
         return materia;
     }
+    
+    
+    public void modificarMateria(Materia materia){
+        String sql = "UPDATE materia SET nombre=?  WHERE idMateria=?";
+        PreparedStatement ps = null;
+         try {
+            ps = con.prepareStatement(sql);
+            
+//            ps.setInt(1, materia.getIdMateria()); //Campo 1.
+            ps.setString(1, materia.getNombre()); //Campo 2.
+//            ps.setInt(2, materia.getAnioMateria()); //Campo 3.
+//            ps.setBoolean(3, materia.isActivo()); //Campo 4.
+            ps.setInt(2, materia.getIdMateria());
+            
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Materia modificada Exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La materia nro de id: " + materia.getIdMateria() + " no existe");
+            }
+
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al modificar Materia" + ex);
+        }
+    }
 }
