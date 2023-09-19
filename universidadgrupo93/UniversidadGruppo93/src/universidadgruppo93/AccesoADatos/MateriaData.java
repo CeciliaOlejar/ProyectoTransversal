@@ -21,11 +21,7 @@ public class MateriaData {
         con = universidadgruppo93.AccesoADatos.Conexion.getConexion(); //Se conecta a la DB en caso de necesitarlo.
     }
 
-    public MateriaData(String matematica, int i, boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void guardarMateria(Materia materia) throws SQLException {
+    public void guardarMateria(Materia materia){
 
         try {
             //1.Inserción de datos a la tabla:
@@ -82,21 +78,18 @@ public class MateriaData {
                 materia = new Materia();
                 materia.setIdMateria(id);
                 materia.setNombre(rs.getString("Nombre"));
-                materia.setAnioMateria(rs.getInt("Año"));
+                materia.setAnioMateria(rs.getInt("Anio"));
                 materia.setActivo(true);
+                System.out.println("Encontramos tu materia: "+ materia.getNombre());
 
             } else {
-                JOptionPane.showMessageDialog(null, "Materia Creada");
+                JOptionPane.showMessageDialog(null, "Materia no encontrada");
             }
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al buscar Materia");
+            JOptionPane.showMessageDialog(null, "Error al buscar Materia" + ex);
         }
         return materia;
-    }
-
-    public void guardarMateria(MateriaData materia1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

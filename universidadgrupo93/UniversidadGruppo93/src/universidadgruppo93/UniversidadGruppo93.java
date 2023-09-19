@@ -23,8 +23,11 @@ public class UniversidadGruppo93 {
 //        System.out.println("dni: "+alumnoEncontrado.getDni());
 //        System.out.println("Apellido: "+ alumnoEncontrado.getApellido());
 //        System.out.println("Nombre: "+ alumnoEncontrado.getNombre());
-          MateriaData materia1 = new MateriaData("Matematica",3,true);
-          materia1.guardarMateria(materia1);
+          Materia materia1 = new Materia("Lengua",2,true);
+          MateriaData md1= new MateriaData();
+          md1.guardarMateria(materia1);
+          md1.buscarMateria(2);
+         // materia1.guardarMateria(materia1);
 //          Materia buscarMateria = materia1.buscarMateria(3);            
         
     }
