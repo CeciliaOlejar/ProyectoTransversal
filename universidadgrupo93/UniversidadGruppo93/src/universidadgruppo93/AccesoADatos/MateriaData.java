@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package universidadgruppo93.accesoADatos;
+package universidadgruppo93.AccesoADatos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import universidadgruppo93.Entidades.Materia;
 
@@ -21,7 +23,7 @@ public class MateriaData {
         con = universidadgruppo93.AccesoADatos.Conexion.getConexion(); //Se conecta a la DB en caso de necesitarlo.
     }
 
-    public void guardarMateria(Materia materia){
+    public void guardarMateria(Materia materia) {
 
         try {
             //1.Inserción de datos a la tabla:
@@ -80,7 +82,7 @@ public class MateriaData {
                 materia.setNombre(rs.getString("Nombre"));
                 materia.setAnioMateria(rs.getInt("Anio"));
                 materia.setActivo(true);
-                System.out.println("Encontramos tu materia: "+ materia.getNombre());
+                System.out.println("Encontramos tu materia: " + materia.getNombre());
 
             } else {
                 JOptionPane.showMessageDialog(null, "Materia no encontrada");
@@ -92,20 +94,16 @@ public class MateriaData {
         }
         return materia;
     }
-    
-    
-    public void modificarMateria(Materia materia){
-        String sql = "UPDATE materia SET nombre=?  WHERE idMateria=?";
+
+    public void modificarMateria(Materia materia) {
+        String sql = "UPDATE materia SET nombre=? WHERE idMateria=?";
         PreparedStatement ps = null;
-         try {
+        try {
             ps = con.prepareStatement(sql);
-            
-//            ps.setInt(1, materia.getIdMateria()); //Campo 1.
-            ps.setString(1, materia.getNombre()); //Campo 2.
-//            ps.setInt(2, materia.getAnioMateria()); //Campo 3.
-//            ps.setBoolean(3, materia.isActivo()); //Campo 4.
+
+            ps.setString(1, materia.getNombre());
             ps.setInt(2, materia.getIdMateria());
-            
+
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -114,10 +112,55 @@ public class MateriaData {
                 JOptionPane.showMessageDialog(null, "La materia nro de id: " + materia.getIdMateria() + " no existe");
             }
 
-            
-            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al modificar Materia" + ex);
         }
+    }
+
+    public void eliminarMateria(Materia materia) {
+        String sql = "DELETE FROM materia WHERE idMateria=? ";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, materia.getIdMateria());
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Materia Borrada");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo borrar la materia");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error encontrando la materia");
+        }
+
+    }
+     
+    public List<Materia> listarMateria(Materia materia){
+        List<Materia> materias = new ArrayList<Materia>();
+        
+        String sql = "SELECT * from materia";
+        PreparedStatement ps = null;
+        
+        try {
+           ps = con.prepareStatement(sql);
+           ResultSet rs = ps.executeQuery();
+           
+           while(rs.next()){
+               materia = new Materia();
+               materia.setNombre(rs.getString("nombre"));
+               materia.setAnioMateria(rs.getInt("anio"));
+               materia.setIdMateria(rs.getInt("idMateria"));
+               materia.setActivo(rs.getBoolean("estado"));
+               materias.add(materia);
+           }
+           ps.close();
+           JOptionPane.showMessageDialog(null, "Su lista de materias es: "+materias);
+           
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error haciendo la lista de materias");
+        }        
+        return materias;
     }
 }
