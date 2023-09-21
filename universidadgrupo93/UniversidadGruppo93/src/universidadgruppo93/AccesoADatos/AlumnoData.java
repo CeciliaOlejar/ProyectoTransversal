@@ -6,8 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import universidadgruppo93.Entidades.Alumno;
+import universidadgruppo93.Entidades.Materia;
 
 public class AlumnoData {
 
@@ -167,6 +170,33 @@ public class AlumnoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al eliminar un alumno");
         }
-
+    }
+    
+    public List<Alumno> listarAlumnos(Alumno alumno){
+        List<Alumno> listarAlumnos = new ArrayList<Alumno>();
+        
+        String sql = "SELECT * from alumno";
+        PreparedStatement ps = null;
+        
+        try {
+           ps = con.prepareStatement(sql);
+           ResultSet rs = ps.executeQuery();
+           
+           while(rs.next()){
+               alumno = new Alumno();
+               alumno.setDni(rs.getInt("dni"));
+               alumno.setApellido(rs.getString("apellido"));
+               alumno.setNombre(rs.getString("nombre"));
+               alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+               alumno.setActivo(rs.getBoolean("estado"));
+               listarAlumnos.add(alumno);
+           }
+           ps.close();
+           JOptionPane.showMessageDialog(null, "Su lista de alumnos es: "+listarAlumnos);
+           
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error haciendo la lista de alumnos");
+        }        
+        return listarAlumnos;
     }
 }
