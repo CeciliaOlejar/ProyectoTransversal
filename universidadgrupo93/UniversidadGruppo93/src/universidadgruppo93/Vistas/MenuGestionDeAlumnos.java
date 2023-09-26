@@ -5,11 +5,19 @@
  */
 package universidadgruppo93.Vistas;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
+import universidadgruppo93.AccesoADatos.AlumnoData;
+import universidadgruppo93.Entidades.Alumno;
+
 /**
  *
  * @author Gabi
  */
 public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
+    private AlumnoData aluData=new AlumnoData();
+    private Alumno alumnoActual=null;
 
     /**
      * Creates new form MenuGestionDeAlumnos2
@@ -27,7 +35,7 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jbBuscarPorDni = new javax.swing.JButton();
         jdtFecha = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         jbNuevoAlumno = new javax.swing.JButton();
@@ -53,10 +61,10 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("Alumno");
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbBuscarPorDni.setText("Buscar");
+        jbBuscarPorDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbBuscarPorDniActionPerformed(evt);
             }
         });
 
@@ -141,7 +149,7 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButton1))))
+                                            .addComponent(jbBuscarPorDni))))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,7 +182,7 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbBuscarPorDni, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,9 +212,22 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jbBuscarPorDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPorDniActionPerformed
+        try {
+            Integer dni= Integer.parseInt(jtpDocumento.getText());
+            alumnoActual=aluData.buscarAlumnoPorDni(dni);
+            if(alumnoActual!=null){
+                jtpApellido.setText(alumnoActual.getApellido());
+                jtpNombre.setText(alumnoActual.getNombre());
+                jrEstado.setSelected(alumnoActual.isActivo());
+                
+                LocalDate lc = alumnoActual.getFechaNac();
+                java.util.Date date = java.util.Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                jdtFecha.setDate(date);
+            };
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jbBuscarPorDniActionPerformed
 
     private void jbNuevoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoAlumnoActionPerformed
         // TODO add your handling code here:
@@ -217,7 +238,29 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbEliminarAlumnoActionPerformed
 
     private void jbGuardarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarAlumnoActionPerformed
-        // TODO add your handling code here:
+        try {
+            Integer dni = Integer.parseInt(jtpDocumento.getText());
+            String nombre = jtpNombre.getText();
+            String apellido = jtpApellido.getText();
+            if (nombre.isEmpty() || apellido.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No puede haber campos vacios.");
+                return;
+            }
+            java.util.Date sFecha=jdtFecha.getDate();
+            LocalDate fechaNac=sFecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            Boolean estado = jrEstado.isSelected();
+            
+            if (alumnoActual==null) {
+                alumnoActual = new Alumno(dni,apellido,nombre,fechaNac,estado);
+                aluData.guardarAlumno(alumnoActual);
+            } else {
+                alumnoActual.setDni(dni);
+                alumnoActual.setApellido(apellido);
+                alumnoActual.setNombre(nombre);
+                alumnoActual.setFechaNac(fechaNac);
+            }
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jbGuardarAlumnoActionPerformed
 
     private void jbSalirMenuAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirMenuAlumnosActionPerformed
@@ -230,7 +273,6 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -241,6 +283,7 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbBuscarPorDni;
     private javax.swing.JButton jbEliminarAlumno;
     private javax.swing.JButton jbGuardarAlumno;
     private javax.swing.JButton jbNuevoAlumno;
