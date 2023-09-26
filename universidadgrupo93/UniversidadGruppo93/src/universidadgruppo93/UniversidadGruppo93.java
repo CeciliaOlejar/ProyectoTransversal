@@ -8,10 +8,6 @@ import universidadgruppo93.Entidades.Materia;
 import universidadgruppo93.AccesoADatos.MateriaData;
 import universidadgruppo93.Entidades.Inscripcion;
 
-/**
- *
- * @author aldio
- */
 public class UniversidadGruppo93 {
 
     public static void main(String[] args) {

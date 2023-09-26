@@ -66,9 +66,9 @@ public class InscripcionData {
                 inscripciones.add(ins);
             }
             ps.close();
-
+            JOptionPane.showMessageDialog(null, "Sus inscripciones son: " + inscripciones);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "error: " + e);
+            JOptionPane.showMessageDialog(null, "error al obtener las inscripciones: " + e);
         }
         return inscripciones;
     }
@@ -99,7 +99,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Sus inscripciones son: " + inscripcionesporAlumno);
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error: " + ex);
+            JOptionPane.showMessageDialog(null, "Error al obtener inscripciones por alumno: " + ex);
         }
         return inscripcionesporAlumno;
     }
@@ -126,10 +126,10 @@ public class InscripcionData {
                 materias.add(materia);
             }
             ps.close();
-            JOptionPane.showMessageDialog(null, "Sus inscripciones son: " + materias);
+            JOptionPane.showMessageDialog(null, "Sus materias cursadas son: " + materias);
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error: " + ex);
+            JOptionPane.showMessageDialog(null, "Error al obtener materias cursadas: " + ex);
         }
         return materias;
 
@@ -156,10 +156,10 @@ public class InscripcionData {
                 materias.add(materia);
             }
             ps.close();
-            JOptionPane.showMessageDialog(null, "Sus inscripciones son: " + materias);
+            JOptionPane.showMessageDialog(null, "Las materias NO cursadas son: " + materias);
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error: " + ex);
+            JOptionPane.showMessageDialog(null, "Error al obtener materias NO cursadas: " + ex);
         }
         return materias;
     }
@@ -185,19 +185,57 @@ public class InscripcionData {
                 alumnos.add(alu);
             }
             ps.close();
-            JOptionPane.showMessageDialog(null, "Materias por alumno: "+ alumnos);
+            JOptionPane.showMessageDialog(null, "Materias por alumno: " + alumnos);
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "error: " + ex);
+            JOptionPane.showMessageDialog(null, "No se pudo obtener alumnos segun materia: " + ex);
         }
         return alumnos;
     }
-    
-    public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
 
+    public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
+        String sql = "DELETE FROM inscripcion WHERE id_alumno = ? AND id_materia = ?";
+        PreparedStatement ps = null;
+        Alumno alum = new Alumno();
+        Materia mat = new Materia();
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, alum.getIdAlumno());
+            ps.setInt(2, mat.getIdMateria());
+
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Inscripcion a Materia Borrada");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo borrar la inscripcion a la materia");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al borrar inscripcion de materia");
+        }
     }
 
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
+        String sql = "UPDATE inscripcion SET nota =?  WHERE idMateria=? AND idAlumno= ?";
+        PreparedStatement ps = null;
+        Alumno alum = new Alumno();
+        Materia materia = new Materia();
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setDouble(1, nota);
+            ps.setInt(2, alum.getIdAlumno());
+            ps.setInt(3, materia.getIdMateria());
 
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Nota modificada Exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe nota");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al modificar Materia" + ex);
+        }
     }
 }
