@@ -39,6 +39,10 @@ public class Alumno {
         this.activo = activo;
     }
 
+    public Alumno(Integer dni, String apellido, String nombre, LocalDate fechaNac, Boolean estado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getIdAlumno() {
         return idAlumno;
     }
