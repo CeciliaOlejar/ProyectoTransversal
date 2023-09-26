@@ -211,7 +211,7 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarAlumnoActionPerformed
 
     private void jbSalirMenuAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirMenuAlumnosActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbSalirMenuAlumnosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
