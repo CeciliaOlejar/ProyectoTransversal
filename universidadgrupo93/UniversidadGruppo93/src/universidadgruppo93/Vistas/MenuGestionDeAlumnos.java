@@ -252,7 +252,7 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
             Boolean estado = jrEstado.isSelected();
             
             if (alumnoActual == null) {
-                alumnoActual = new Alumno(dni, apellido, nombre, fechaNac, estado); //aca hay un error 
+                alumnoActual = new Alumno(apellido, nombre, dni, fechaNac, estado); //aca hay un error 
                 aluData.guardarAlumno(alumnoActual);
             } else {
                 alumnoActual.setDni(dni);
@@ -274,7 +274,6 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
     private void jrEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jrEstadoActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
