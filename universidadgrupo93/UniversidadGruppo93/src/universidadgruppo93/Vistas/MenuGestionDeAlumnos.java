@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadgruppo93.Vistas;
 
 import java.time.LocalDate;
@@ -12,10 +7,6 @@ import javax.swing.JOptionPane;
 import universidadgruppo93.AccesoADatos.AlumnoData;
 import universidadgruppo93.Entidades.Alumno;
 
-/**
- *
- * @author Gabi
- */
 public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
     private AlumnoData aluData=new AlumnoData();
     private Alumno alumnoActual=null;
