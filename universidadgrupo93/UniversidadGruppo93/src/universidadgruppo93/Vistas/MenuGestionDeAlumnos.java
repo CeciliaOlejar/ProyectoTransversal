@@ -233,7 +233,7 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarPorDniActionPerformed
 
     private void jbNuevoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoAlumnoActionPerformed
-        // TODO add your handling code here:
+        limpiarCampos();
     }//GEN-LAST:event_jbNuevoAlumnoActionPerformed
 
     private void jbEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarAlumnoActionPerformed
@@ -260,8 +260,8 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
             LocalDate fechaNac=sFecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             Boolean estado = jrEstado.isSelected();
             
-            if (alumnoActual==null) {
-                alumnoActual = new Alumno(dni, apellido, nombre, fechaNac, estado ); //aca hay un error 
+            if (alumnoActual == null) {
+                alumnoActual = new Alumno(dni, apellido, nombre, fechaNac, estado); //aca hay un error 
                 aluData.guardarAlumno(alumnoActual);
             } else {
                 alumnoActual.setDni(dni);
