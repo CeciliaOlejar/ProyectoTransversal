@@ -7,6 +7,7 @@ package universidadgruppo93.Vistas;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import universidadgruppo93.AccesoADatos.AlumnoData;
 import universidadgruppo93.Entidades.Alumno;
@@ -118,6 +119,8 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Fecha de nacimiento");
 
+        jrEstado.setSelected(true);
+        jrEstado.setEnabled(false);
         jrEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrEstadoActionPerformed(evt);
@@ -235,10 +238,17 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
 
     private void jbEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarAlumnoActionPerformed
         // TODO add your handling code here:
+        if (alumnoActual !=null){
+        aluData.eliminarAlumno(alumnoActual.getIdAlumno());
+        alumnoActual = null;
+        limpiarCampos();
+        }else{
+        JOptionPane.showMessageDialog(this, "Debe buscar un alumno");
+        }
     }//GEN-LAST:event_jbEliminarAlumnoActionPerformed
 
     private void jbGuardarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarAlumnoActionPerformed
-//        try {
+        try {
             Integer dni = Integer.parseInt(jtpDocumento.getText());
             String nombre = jtpNombre.getText();
             String apellido = jtpApellido.getText();
@@ -251,7 +261,7 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
             Boolean estado = jrEstado.isSelected();
             
             if (alumnoActual==null) {
-                alumnoActual = new Alumno(dni, apellido, nombre, fechaNac, estado );
+                alumnoActual = new Alumno(dni, apellido, nombre, fechaNac, estado ); //aca hay un error 
                 aluData.guardarAlumno(alumnoActual);
             } else {
                 alumnoActual.setDni(dni);
@@ -260,13 +270,14 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
                 alumnoActual.setFechaNac(fechaNac);
                 aluData.modificarAlumno(alumnoActual);
             }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
+            limpiarCampos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_jbGuardarAlumnoActionPerformed
 
     private void jbSalirMenuAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirMenuAlumnosActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jbSalirMenuAlumnosActionPerformed
 
     private void jrEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrEstadoActionPerformed
@@ -296,4 +307,12 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JTextPane jtpDocumento;
     private javax.swing.JTextPane jtpNombre;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiarCampos() {
+        jtpDocumento.setText("");
+        jtpApellido.setText("");
+        jtpNombre.setText("");
+        jrEstado.setSelected(true);
+        jdtFecha.setDate(new Date());
+    }
 }
