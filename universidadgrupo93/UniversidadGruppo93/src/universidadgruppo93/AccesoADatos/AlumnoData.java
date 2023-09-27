@@ -172,8 +172,8 @@ public class AlumnoData {
         }
     }
     
-    public List<Alumno> listarAlumnos(Alumno alumno){
-        List<Alumno> listarAlumnos = new ArrayList<Alumno>();
+    public ArrayList<Alumno> listarAlumnos(){
+        ArrayList<Alumno> listarAlumnos = new ArrayList<Alumno>();
         
         String sql = "SELECT * from alumno";
         PreparedStatement ps = null;
@@ -183,7 +183,7 @@ public class AlumnoData {
            ResultSet rs = ps.executeQuery();
            
            while(rs.next()){
-               alumno = new Alumno();
+               Alumno alumno = new Alumno();
                alumno.setDni(rs.getInt("dni"));
                alumno.setApellido(rs.getString("apellido"));
                alumno.setNombre(rs.getString("nombre"));

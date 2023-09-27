@@ -1,21 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadgruppo93.Vistas;
 
-/**
- *
- * @author Gabi
- */
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import universidadgruppo93.AccesoADatos.AlumnoData;
+import universidadgruppo93.AccesoADatos.MateriaData;
+import universidadgruppo93.AccesoADatos.InscripcionData;
+import universidadgruppo93.Entidades.Alumno;
+import universidadgruppo93.Entidades.Materia;
+import universidadgruppo93.Entidades.Inscripcion;
+
 public class MenuInscripciones extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form MenuInscripciones2
-     */
+    private ArrayList<Materia> listaM;
+    private ArrayList<Alumno> listaA;
+
+    private InscripcionData inscripData;
+    private MateriaData mateData;
+    private AlumnoData aluData;
+
+    private DefaultTableModel tablamodelo;
+
     public MenuInscripciones() {
         initComponents();
+
+        aluData = new AlumnoData();
+        listaA = aluData.listarAlumnos();
+        tablamodelo = new DefaultTableModel();
+        inscripData = new InscripcionData();
+        mateData = new MateriaData();
+
+        cargaAlumnos();
+        armarCabeceraTabla();
+
     }
 
     /**
@@ -34,8 +51,8 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jbSalirMenuAlumnos = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioMateriasInsriptas = new javax.swing.JRadioButton();
+        jRadioMateriasNoInscriptas = new javax.swing.JRadioButton();
         jbNuevoAlumno = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,13 +63,12 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
         setTitle("Formulario de Inscripcion");
 
         jbEliminarAlumno.setText("Anular inscripción");
+        jbEliminarAlumno.setEnabled(false);
         jbEliminarAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEliminarAlumnoActionPerformed(evt);
             }
         });
-
-        jbcAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alumno1", "Alumno2" }));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -79,11 +95,17 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
             }
         });
 
-        jRadioButton1.setText("Materias inscriptas");
+        jRadioMateriasInsriptas.setText("Materias inscriptas");
+        jRadioMateriasInsriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioMateriasInsriptasActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("Materias no inscriptas");
+        jRadioMateriasNoInscriptas.setText("Materias no inscriptas");
 
         jbNuevoAlumno.setText("Inscribir");
+        jbNuevoAlumno.setEnabled(false);
         jbNuevoAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbNuevoAlumnoActionPerformed(evt);
@@ -121,12 +143,12 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
                                         .addGap(8, 8, 8))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jRadioButton1)
+                                            .addComponent(jRadioMateriasInsriptas)
                                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jbcAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jRadioButton2)))))
+                                            .addComponent(jRadioMateriasNoInscriptas)))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -150,8 +172,8 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRadioMateriasInsriptas)
+                    .addComponent(jRadioMateriasNoInscriptas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -170,26 +192,76 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbEliminarAlumnoActionPerformed
 
     private void jbSalirMenuAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirMenuAlumnosActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jbSalirMenuAlumnosActionPerformed
 
     private void jbNuevoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoAlumnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbNuevoAlumnoActionPerformed
 
+    private void jRadioMateriasInsriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioMateriasInsriptasActionPerformed
+        borrarFila();
+        jRadioMateriasNoInscriptas.setSelected(false);
+        cargaDatosInscriptos();
+        jbNuevoAlumno.setEnabled(true);
+        jbEliminarAlumno.setEnabled(false);
+    }//GEN-LAST:event_jRadioMateriasInsriptasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioMateriasInsriptas;
+    private javax.swing.JRadioButton jRadioMateriasNoInscriptas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jbEliminarAlumno;
     private javax.swing.JButton jbNuevoAlumno;
     private javax.swing.JButton jbSalirMenuAlumnos;
-    private javax.swing.JComboBox<String> jbcAlumnos;
+    private javax.swing.JComboBox<Alumno> jbcAlumnos;
     // End of variables declaration//GEN-END:variables
+
+    private void cargaAlumnos() {
+        for (Alumno item : listaA) {
+            jbcAlumnos.addItem(item);
+        }
+    }
+
+    private void armarCabeceraTabla() {
+        ArrayList<Object> cabecera = new ArrayList<>();
+        cabecera.add("ID");
+        cabecera.add("Nombre");
+        cabecera.add("Año");
+        for (Object it: cabecera){
+            tablamodelo.addColumn(it);
+        }
+        jTable1.setModel(tablamodelo);
+    }
+    
+    private void borrarFila(){
+        int indice = tablamodelo.getRowCount() -1;
+        
+        for (int i = indice; i>=0; i--){
+            tablamodelo.removeRow(i);
+        }
+    }
+    
+    private void cargaDatosNoInscriptos(){
+        Alumno seleccionado = (Alumno)jbcAlumnos.getSelectedItem();
+        listaM = (ArrayList)inscripData.obtenerMateriasNOCursadas(seleccionado.getIdAlumno());
+        for (Materia m: listaM){
+            tablamodelo.addRow(new Object[] {m.getIdMateria(), m.getNombre(),m.getAnioMateria()});
+        }
+    }
+    
+    private void cargaDatosInscriptos(){
+        Alumno seleccionado = (Alumno)jbcAlumnos.getSelectedItem();
+        List <Materia> lista = inscripData.obtenerMateriasSICursadas(seleccionado.getIdAlumno());
+        for (Materia m: listaM){
+            tablamodelo.addRow(new Object[] {m.getIdMateria(), m.getNombre(),m.getAnioMateria()});
+        }
+    
+    }
 }
