@@ -238,7 +238,7 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbEliminarAlumnoActionPerformed
 
     private void jbGuardarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarAlumnoActionPerformed
-        try {
+//        try {
             Integer dni = Integer.parseInt(jtpDocumento.getText());
             String nombre = jtpNombre.getText();
             String apellido = jtpApellido.getText();
@@ -251,16 +251,18 @@ public class MenuGestionDeAlumnos extends javax.swing.JInternalFrame {
             Boolean estado = jrEstado.isSelected();
             
             if (alumnoActual==null) {
-                alumnoActual = new Alumno(dni,apellido,nombre,fechaNac,estado);
+                alumnoActual = new Alumno(dni, apellido, nombre, fechaNac, estado );
                 aluData.guardarAlumno(alumnoActual);
             } else {
                 alumnoActual.setDni(dni);
                 alumnoActual.setApellido(apellido);
                 alumnoActual.setNombre(nombre);
                 alumnoActual.setFechaNac(fechaNac);
+                aluData.modificarAlumno(alumnoActual);
             }
-        } catch (Exception e) {
-        }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
     }//GEN-LAST:event_jbGuardarAlumnoActionPerformed
 
     private void jbSalirMenuAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirMenuAlumnosActionPerformed
