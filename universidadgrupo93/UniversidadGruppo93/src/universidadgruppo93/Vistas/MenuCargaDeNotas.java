@@ -137,13 +137,10 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
 
         int filaseleccionada = jTable1.getSelectedRow();
         if (filaseleccionada != -1) {
-            agregarFila();
-
             Alumno a = (Alumno) jbcAlumnos.getSelectedItem();
             String idmateriaStr = (String) tablanotas.getValueAt(filaseleccionada, 0);
             String notaStr = (String) tablanotas.getValueAt(filaseleccionada, 2);
-
-// Luego, puedes convertir estos Strings a Integer si es necesario
+            
             Integer idmateria = Integer.parseInt(idmateriaStr);
             Integer nota = Integer.parseInt(notaStr);
             inscrData.actualizarNota(a.getIdAlumno(), idmateria, nota);

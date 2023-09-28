@@ -220,6 +220,7 @@ public class InscripcionData {
         PreparedStatement ps = null;
         Alumno alum = new Alumno();
         Materia materia = new Materia();
+        Inscripcion nuevainsc = new Inscripcion();
         try {
             ps = con.prepareStatement(sql);
             ps.setDouble(1, nota);
@@ -230,7 +231,7 @@ public class InscripcionData {
 
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Nota modificada Exitosamente.");
-            } else {
+            } else{                
                 JOptionPane.showMessageDialog(null, "No existe nota");
             }
 
