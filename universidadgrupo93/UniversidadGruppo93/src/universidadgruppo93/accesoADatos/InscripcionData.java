@@ -166,13 +166,13 @@ public class InscripcionData {
 
     public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
         ArrayList<Alumno> alumnos = new ArrayList<>();
-        String sql = "SELECT alumno.idAlumno, dni, nombre, apellido, fechaNacimeinto, estado"
-                + "FROM inscripcion i,alumno a WHERE iinscripcion.idAlumno = alumno.idAlumno "
-                + "AND idMateria =? AND estado=1";
+        String sql = "SELECT a.idAlumno, dni, apellido, nombre, fechaNac, estado FROM inscripcion i, alumno a\n "
+                + "WHERE i.idAlumno = a.idAlumno\n "
+                + "AND idMateria = ? AND estado = 1";
         PreparedStatement ps = null;
 
         try {
-            ps = con.prepareCall(sql);
+            ps = con.prepareStatement(sql);
             ps.setInt(1, idMateria);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -180,9 +180,10 @@ public class InscripcionData {
                 alu.setIdAlumno(rs.getInt("idAlumno"));
                 alu.setApellido(rs.getString("apellido"));
                 alu.setNombre(rs.getString("nombre"));
-                alu.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+                alu.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 alu.setActivo(rs.getBoolean("estado"));
                 alumnos.add(alu);
+                JOptionPane.showMessageDialog(null, alu);
             }
             ps.close();
             JOptionPane.showMessageDialog(null, "ok");

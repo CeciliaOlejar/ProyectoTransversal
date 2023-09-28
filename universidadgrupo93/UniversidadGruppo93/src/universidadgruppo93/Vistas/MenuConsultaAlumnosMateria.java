@@ -12,14 +12,22 @@ import universidadgruppo93.Entidades.Materia;
 public class MenuConsultaAlumnosMateria extends javax.swing.JInternalFrame {
 private InscripcionData inscripData;
 private MateriaData mateData;
-    private DefaultTableModel tablamodelo;
-
+private AlumnoData aluData;
+private DefaultTableModel tablamodelo;
+private ArrayList<Alumno> listaA;
+private ArrayList<Materia> listaM;
   
     public MenuConsultaAlumnosMateria() {
         initComponents();
+        aluData = new AlumnoData();
+        inscripData = new InscripcionData();
         mateData = new MateriaData();
+        listaA = (ArrayList<Alumno>) aluData.listarAlumnos();
+        listaM = (ArrayList<Materia>) mateData.listarMateria();
         tablamodelo = new DefaultTableModel();
         
+        cargaMateria();
+        armarCabeceraTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -141,7 +149,8 @@ private MateriaData mateData;
 
     private void jbBuscarMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarMateriasActionPerformed
         borrarFila();
-        cargaMaterias();
+        
+        cargaAlumno();
     }//GEN-LAST:event_jbBuscarMateriasActionPerformed
 
 
@@ -153,16 +162,21 @@ private MateriaData mateData;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jbBuscarMaterias;
     private javax.swing.JButton jbSalirAlumnosPorMateria;
-    private javax.swing.JComboBox<String> jbcMateria;
+    private javax.swing.JComboBox<Materia> jbcMateria;
     // End of variables declaration//GEN-END:variables
 
-private void cargaMaterias(){
+private void cargaAlumno(){
         Materia seleccionado = (Materia)jbcMateria.getSelectedItem();
-        List <Alumno> lista = inscripData.obtenerAlumnosXMateria(seleccionado.getIdMateria());
-        for (Alumno a: lista){
+        listaA = (ArrayList) inscripData.obtenerAlumnosXMateria(seleccionado.getIdMateria());
+        for (Alumno a: listaA){
             tablamodelo.addRow(new Object[] {a.getApellido(), a.getNombre(), a.getDni()});
         }
     
+    }
+private void cargaMateria() {
+        for (Materia item : listaM) {
+            jbcMateria.addItem(item);
+        }
     }
 
     private void borrarFila() {
@@ -171,5 +185,14 @@ private void cargaMaterias(){
         for (int i = indice; i>=0; i--){
             tablamodelo.removeRow(i);
         }
+    }
+    private void armarCabeceraTabla() {
+        ArrayList<Object> cabecera = new ArrayList<>();
+        cabecera.add("Apellido");
+        cabecera.add("Nombre");
+        for (Object it: cabecera){
+            tablamodelo.addColumn(it);
+        }
+        jTable1.setModel(tablamodelo);
     }
 }

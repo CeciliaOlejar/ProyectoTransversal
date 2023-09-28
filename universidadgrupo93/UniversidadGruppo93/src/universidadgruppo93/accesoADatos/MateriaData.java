@@ -132,7 +132,7 @@ public class MateriaData {
 
     }
      
-    public List<Materia> listarMateria(Materia materia){
+    public List<Materia> listarMateria(){
         List<Materia> materias = new ArrayList<Materia>();
         
         String sql = "SELECT * from materia";
@@ -143,7 +143,7 @@ public class MateriaData {
            ResultSet rs = ps.executeQuery();
            
            while(rs.next()){
-               materia = new Materia();
+               Materia materia = new Materia();
                materia.setNombre(rs.getString("nombre"));
                materia.setAnioMateria(rs.getInt("anio"));
                materia.setIdMateria(rs.getInt("idMateria"));
