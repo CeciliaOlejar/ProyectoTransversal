@@ -60,13 +60,13 @@
                                   <Component id="jrEstado" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jbNuevoAlumno" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jbNuevaMateria" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jbEliminarMateria" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jbGuardarAlumno" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jbGuardarMateria" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jbSalirMenuAlumnos" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jbSalirMenuMateria" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -111,13 +111,13 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jbGuardarAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbSalirMenuAlumnos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbGuardarMateria" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbSalirMenuMateria" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jbEliminarMateria" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jbNuevoAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbNuevaMateria" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -151,20 +151,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEliminarMateriaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jbNuevoAlumno">
+    <Component class="javax.swing.JButton" name="jbNuevaMateria">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nuevo"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbNuevoAlumnoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbNuevaMateriaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jbGuardarAlumno">
+    <Component class="javax.swing.JButton" name="jbGuardarMateria">
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbGuardarAlumnoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbGuardarMateriaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -189,12 +189,12 @@
         <Property name="text" type="java.lang.String" value="Codigo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jbSalirMenuAlumnos">
+    <Component class="javax.swing.JButton" name="jbSalirMenuMateria">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirMenuAlumnosActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirMenuMateriaActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

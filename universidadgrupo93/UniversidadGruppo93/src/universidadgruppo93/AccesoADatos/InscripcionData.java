@@ -183,10 +183,9 @@ public class InscripcionData {
                 alu.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 alu.setActivo(rs.getBoolean("estado"));
                 alumnos.add(alu);
-                JOptionPane.showMessageDialog(null, alu);
             }
             ps.close();
-            JOptionPane.showMessageDialog(null, "ok");
+            JOptionPane.showMessageDialog(null, "Se visualizan todos los alumnos");
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo obtener alumnos segun materia: " + ex);
