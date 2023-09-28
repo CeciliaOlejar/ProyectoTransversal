@@ -15,7 +15,6 @@ import universidadgruppo93.AccesoADatos.MateriaData;
 public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
 
     private ArrayList<Alumno> listaAlu;
-    private ArrayList<Inscripcion> listainsc;
     private Alumno alumno;
     private AlumnoData aluData;
     private MateriaData mateData;
@@ -167,11 +166,7 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
         if (filaseleccionada != -1) {
             Alumno a = (Alumno) jbcAlumnos.getSelectedItem();
             int idMateria = (Integer) tablanotas.getValueAt(filaseleccionada, 0);
-//            double nota = (double) tablanotas.getValueAt(filaseleccionada,2);
-//            String idmateriaStr = (String)tablanotas.getValueAt(filaseleccionada, 0);
             String notaStr = (String)tablanotas.getValueAt(filaseleccionada, 2);
-//
-//            Integer idmateria = Integer.parseInt(idmateriaStr);
             Integer nota = Integer.parseInt(notaStr);
 
             inscrData.actualizarNota(a.getIdAlumno(), idMateria, nota);
