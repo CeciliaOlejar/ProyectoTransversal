@@ -1,15 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadgruppo93.Vistas;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import universidadgruppo93.AccesoADatos.AlumnoData;
+import universidadgruppo93.AccesoADatos.InscripcionData;
+import universidadgruppo93.AccesoADatos.MateriaData;
+import universidadgruppo93.Entidades.Alumno;
+import universidadgruppo93.Entidades.Materia;
+
 public class MenuConsultaAlumnosMateria extends javax.swing.JInternalFrame {
+private InscripcionData inscripData;
+private MateriaData mateData;
+    private DefaultTableModel tablamodelo;
 
   
     public MenuConsultaAlumnosMateria() {
         initComponents();
+        mateData = new MateriaData();
+        tablamodelo = new DefaultTableModel();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -130,7 +140,8 @@ public class MenuConsultaAlumnosMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbcMateriaActionPerformed
 
     private void jbBuscarMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarMateriasActionPerformed
-        // TODO add your handling code here:
+        borrarFila();
+        cargaMaterias();
     }//GEN-LAST:event_jbBuscarMateriasActionPerformed
 
 
@@ -144,4 +155,21 @@ public class MenuConsultaAlumnosMateria extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbSalirAlumnosPorMateria;
     private javax.swing.JComboBox<String> jbcMateria;
     // End of variables declaration//GEN-END:variables
+
+private void cargaMaterias(){
+        Materia seleccionado = (Materia)jbcMateria.getSelectedItem();
+        List <Alumno> lista = inscripData.obtenerAlumnosXMateria(seleccionado.getIdMateria());
+        for (Alumno a: lista){
+            tablamodelo.addRow(new Object[] {a.getApellido(), a.getNombre(), a.getDni()});
+        }
+    
+    }
+
+    private void borrarFila() {
+       int indice = tablamodelo.getRowCount() -1;
+        
+        for (int i = indice; i>=0; i--){
+            tablamodelo.removeRow(i);
+        }
+    }
 }
