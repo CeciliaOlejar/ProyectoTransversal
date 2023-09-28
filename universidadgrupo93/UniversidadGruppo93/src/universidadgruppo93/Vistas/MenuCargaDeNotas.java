@@ -34,7 +34,7 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
 
         cargaAlumnos();
         armarCabeceraTabla();
-        agregarFila();
+//        agregarFila();
     }
 
     @SuppressWarnings("unchecked")
@@ -166,12 +166,15 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
         int filaseleccionada = jTable1.getSelectedRow();
         if (filaseleccionada != -1) {
             Alumno a = (Alumno) jbcAlumnos.getSelectedItem();
-            String idmateriaStr = (String) tablanotas.getValueAt(filaseleccionada, 0);
-            String notaStr = (String) tablanotas.getValueAt(filaseleccionada, 2);
-
-            Integer idmateria = Integer.parseInt(idmateriaStr);
+            int idMateria = (Integer) tablanotas.getValueAt(filaseleccionada, 0);
+//            double nota = (double) tablanotas.getValueAt(filaseleccionada,2);
+//            String idmateriaStr = (String)tablanotas.getValueAt(filaseleccionada, 0);
+            String notaStr = (String)tablanotas.getValueAt(filaseleccionada, 2);
+//
+//            Integer idmateria = Integer.parseInt(idmateriaStr);
             Integer nota = Integer.parseInt(notaStr);
-            inscrData.actualizarNota(a.getIdAlumno(), idmateria, nota);
+
+            inscrData.actualizarNota(a.getIdAlumno(), idMateria, nota);
 
             borrarFila();
         } else {
@@ -201,7 +204,7 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
         Alumno seleccionado = (Alumno) jbcAlumnos.getSelectedItem();
         List<Materia> lista = inscrData.obtenerMateriasSICursadas(seleccionado.getIdAlumno());
         for (Materia m : lista) {
-            tablanotas.addRow(new Object[]{m.getIdMateria(), m.getNombre(), " "}); //acordarse de vincular la entidad ALUMNO con el comboBox
+            tablanotas.addRow(new Object[]{m.getIdMateria(), m.getNombre(), null}); //acordarse de vincular la entidad ALUMNO con el comboBox
         }
 
     }
