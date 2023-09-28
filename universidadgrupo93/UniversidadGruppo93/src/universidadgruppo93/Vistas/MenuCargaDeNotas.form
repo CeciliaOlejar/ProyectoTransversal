@@ -29,9 +29,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jbEliminarAlumno" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbguardarNota" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                              <Component id="jbSalirMenuAlumnos" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbSalirMenuNotas" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -70,20 +70,20 @@
               <Component id="jScrollPane1" min="-2" pref="127" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jbEliminarAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbSalirMenuAlumnos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbguardarNota" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbSalirMenuNotas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jbEliminarAlumno">
+    <Component class="javax.swing.JButton" name="jbguardarNota">
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEliminarAlumnoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbguardarNotaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jbcAlumnos">
@@ -116,12 +116,12 @@
         <Property name="text" type="java.lang.String" value="Carga de notas"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jbSalirMenuAlumnos">
+    <Component class="javax.swing.JButton" name="jbSalirMenuNotas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirMenuAlumnosActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirMenuNotasActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">

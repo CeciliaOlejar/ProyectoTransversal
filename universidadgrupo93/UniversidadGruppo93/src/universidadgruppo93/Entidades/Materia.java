@@ -23,6 +23,10 @@ public class Materia {
         this.activo = activo;
     }
 
+    public Materia(int idMateria, String nombreMateria, int nota) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getIdMateria() {
         return idMateria;
     }

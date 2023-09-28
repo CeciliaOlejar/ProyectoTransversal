@@ -217,7 +217,7 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
             
             int idMateria = (Integer) tablamodelo.getValueAt(filaseleccionada,0);
             String nombreMateria = (String) tablamodelo.getValueAt(filaseleccionada,1);
-            int anio = (Integer)tablamodelo.getValueAt(filaseleccionada,1);
+            int anio = (Integer)tablamodelo.getValueAt(filaseleccionada,2);
             Materia materiaselect = new Materia(idMateria,nombreMateria,anio,true);
             Inscripcion incrisp = new Inscripcion(a,materiaselect,0);
             inscripData.guardarInscripcion(incrisp);
