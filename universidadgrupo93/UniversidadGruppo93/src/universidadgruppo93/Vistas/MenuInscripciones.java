@@ -195,10 +195,10 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
     private void jbEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarAlumnoActionPerformed
         int filaseleccionada = jTable1.getSelectedRow();
         if(filaseleccionada !=-1){
-            Alumno a = (Alumno) jbcAlumnos.getSelectedItem();
+            Alumno alumn = (Alumno) jbcAlumnos.getSelectedItem();
             int idMateria = (Integer) tablamodelo.getValueAt(filaseleccionada,0);
             
-            inscripData.borrarInscripcionMateriaAlumno(a.getIdAlumno(),idMateria);
+            inscripData.borrarInscripcionMateriaAlumno(alumn.getIdAlumno(),idMateria);
             borrarFila();
         }else{
 //            JPopupMenu.( "Debe seleccionar una fila");

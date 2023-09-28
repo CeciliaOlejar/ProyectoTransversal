@@ -185,7 +185,7 @@ public class InscripcionData {
                 alumnos.add(alu);
             }
             ps.close();
-            JOptionPane.showMessageDialog(null, "Materias por alumno: " + alumnos);
+            JOptionPane.showMessageDialog(null, "ok");
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo obtener alumnos segun materia: " + ex);
@@ -194,16 +194,16 @@ public class InscripcionData {
     }
 
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
-        String sql = "DELETE FROM inscripcion WHERE id_alumno = ? AND id_materia = ?";
+        String sql = "DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
         PreparedStatement ps = null;
-        Alumno alum = new Alumno();
-        Materia mat = new Materia();
-        try {
+       
+        try{
             ps = con.prepareStatement(sql);
-            ps.setInt(1, alum.getIdAlumno());
-            ps.setInt(2, mat.getIdMateria());
+            ps.setInt(1, idAlumno);
+            ps.setInt(2, idMateria);
 
             int exito = ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, exito);
 
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Inscripcion a Materia Borrada");
@@ -211,7 +211,7 @@ public class InscripcionData {
                 JOptionPane.showMessageDialog(null, "No se pudo borrar la inscripcion a la materia");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al borrar inscripcion de materia");
+            JOptionPane.showMessageDialog(null, "Error al borrar inscripcion de materia"+ ex);
         }
     }
 
