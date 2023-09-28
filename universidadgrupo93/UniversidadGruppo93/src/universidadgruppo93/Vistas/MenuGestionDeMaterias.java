@@ -5,11 +5,22 @@
  */
 package universidadgruppo93.Vistas;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import universidadgruppo93.AccesoADatos.MateriaData;
+import universidadgruppo93.Entidades.Alumno;
+import universidadgruppo93.Entidades.Materia;
+
 /**
  *
  * @author Gabi
  */
 public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
+
+    private MateriaData mate = new MateriaData();
+    private Materia mateactual = null;
 
     /**
      * Creates new form MenuMateria2
@@ -29,8 +40,8 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
 
         jrEstado = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtpApellido = new javax.swing.JTextPane();
-        jbEliminarAlumno = new javax.swing.JButton();
+        jtpNombreMateria = new javax.swing.JTextPane();
+        jbEliminarMateria = new javax.swing.JButton();
         jbNuevoAlumno = new javax.swing.JButton();
         jbGuardarAlumno = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -38,12 +49,12 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jbSalirMenuAlumnos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtpDocumento = new javax.swing.JTextPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jtpNombre = new javax.swing.JTextPane();
+        jtpCodigo = new javax.swing.JTextPane();
+        janio = new javax.swing.JScrollPane();
+        jtpanio = new javax.swing.JTextPane();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -57,12 +68,12 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
             }
         });
 
-        jScrollPane2.setViewportView(jtpApellido);
+        jScrollPane2.setViewportView(jtpNombreMateria);
 
-        jbEliminarAlumno.setText("Eliminar");
-        jbEliminarAlumno.addActionListener(new java.awt.event.ActionListener() {
+        jbEliminarMateria.setText("Eliminar");
+        jbEliminarMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbEliminarAlumnoActionPerformed(evt);
+                jbEliminarMateriaActionPerformed(evt);
             }
         });
 
@@ -96,16 +107,16 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jtpDocumento);
+        jScrollPane1.setViewportView(jtpCodigo);
 
-        jScrollPane3.setViewportView(jtpNombre);
+        janio.setViewportView(jtpanio);
 
         jLabel5.setText("Estado");
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBuscar.setText("Buscar");
+        jBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBuscarActionPerformed(evt);
             }
         });
 
@@ -130,11 +141,11 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(janio, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButton1))
+                                            .addComponent(jBuscar))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jScrollPane2)
                                             .addGap(8, 8, 8))))
@@ -145,7 +156,7 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jbNuevoAlumno)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jbEliminarAlumno)
+                                    .addComponent(jbEliminarMateria)
                                     .addGap(18, 18, 18)
                                     .addComponent(jbGuardarAlumno)
                                     .addGap(18, 18, 18)
@@ -166,7 +177,7 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,7 +185,7 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(janio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -186,7 +197,7 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
                         .addComponent(jbSalirMenuAlumnos))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbEliminarAlumno)
+                            .addComponent(jbEliminarMateria)
                             .addComponent(jbNuevoAlumno))
                         .addContainerGap())))
         );
@@ -195,32 +206,72 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jrEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrEstadoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jrEstadoActionPerformed
 
-    private void jbEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarAlumnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbEliminarAlumnoActionPerformed
+    private void jbEliminarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarMateriaActionPerformed
+    if (mateactual !=null){
+        mate.eliminarMateria(mateactual);
+        mateactual = null;
+        limpiarCampos();
+        }else{
+        JOptionPane.showMessageDialog(this, "Debe buscar un alumno");
+        }
+    }//GEN-LAST:event_jbEliminarMateriaActionPerformed
 
     private void jbNuevoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoAlumnoActionPerformed
-        // TODO add your handling code here:
+        limpiarCampos();
     }//GEN-LAST:event_jbNuevoAlumnoActionPerformed
 
     private void jbGuardarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarAlumnoActionPerformed
-        // TODO add your handling code here:
+        try {
+            Integer codigo = Integer.parseInt(jtpCodigo.getText());
+            String nombre = jtpNombreMateria.getText();
+            Integer anio = Integer.parseInt(jtpanio.getText());
+            if (anio==null || nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No puede haber campos vacios.");
+                return;
+            }
+            Boolean estado = jrEstado.isSelected();
+            if (mateactual == null) {
+                mateactual = new Materia(nombre,anio,true); 
+                mate.guardarMateria(mateactual);
+            } else {
+                mateactual.setNombre(nombre);
+                mateactual.setAnioMateria(anio);
+                mateactual.setIdMateria(codigo);
+                
+            }
+            limpiarCampos();
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_jbGuardarAlumnoActionPerformed
 
     private void jbSalirMenuAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirMenuAlumnosActionPerformed
-
+        dispose();
     }//GEN-LAST:event_jbSalirMenuAlumnosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
+        try {
+            Integer codigo = Integer.parseInt(jtpCodigo.getText());
+            mateactual = mate.buscarMateria(codigo);
+            if (mateactual != null) {
+                jtpNombreMateria.setText(mateactual.getNombre());
+                jrEstado.setSelected(mateactual.isActivo());
+                jtpanio.setText(String.valueOf(mateactual.getAnioMateria()));
+            } else {
+                //agregar que no se ingreso codigo de materia 
+            }
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, e);
+        }
+        
+    }//GEN-LAST:event_jBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -228,19 +279,27 @@ public class MenuGestionDeMaterias extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton jbEliminarAlumno;
+    private javax.swing.JScrollPane janio;
+    private javax.swing.JButton jbEliminarMateria;
     private javax.swing.JButton jbGuardarAlumno;
     private javax.swing.JButton jbNuevoAlumno;
     private javax.swing.JButton jbSalirMenuAlumnos;
     private javax.swing.JRadioButton jrEstado;
-    private javax.swing.JTextPane jtpApellido;
-    private javax.swing.JTextPane jtpDocumento;
-    private javax.swing.JTextPane jtpNombre;
+    private javax.swing.JTextPane jtpCodigo;
+    private javax.swing.JTextPane jtpNombreMateria;
+    private javax.swing.JTextPane jtpanio;
     // End of variables declaration//GEN-END:variables
 
     void isIconifiable(boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void limpiarCampos() {
+        jtpCodigo.setText("");
+        jrEstado.setSelected(true);
+        jtpanio.setText("");
+        jtpNombreMateria.setText("");
+
     }
 }
