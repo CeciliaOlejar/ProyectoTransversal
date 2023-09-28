@@ -2,6 +2,7 @@ package universidadgruppo93.Vistas;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadgruppo93.AccesoADatos.AlumnoData;
@@ -14,7 +15,8 @@ import universidadgruppo93.AccesoADatos.MateriaData;
 public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
 
     private ArrayList<Alumno> listaAlu;
-
+    private ArrayList<Inscripcion> listainsc;
+    private Alumno alumno;
     private AlumnoData aluData;
     private MateriaData mateData;
     private InscripcionData inscrData;
@@ -23,6 +25,7 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
     public MenuCargaDeNotas() {
         initComponents();
 
+        alumno = new Alumno();
         aluData = new AlumnoData();
         inscrData = new InscripcionData();
         listaAlu = (ArrayList<Alumno>) aluData.listarAlumnos();
@@ -38,7 +41,7 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jbguardarNota = new javax.swing.JButton();
+        jbBuscarNotas = new javax.swing.JButton();
         jbcAlumnos = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -46,13 +49,14 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jbguardarNota1 = new javax.swing.JButton();
 
         setTitle("Carga de notas");
 
-        jbguardarNota.setText("Guardar");
-        jbguardarNota.addActionListener(new java.awt.event.ActionListener() {
+        jbBuscarNotas.setText("Buscar");
+        jbBuscarNotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbguardarNotaActionPerformed(evt);
+                jbBuscarNotasActionPerformed(evt);
             }
         });
 
@@ -83,6 +87,13 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jbguardarNota1.setText("Guardar");
+        jbguardarNota1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbguardarNota1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,8 +105,8 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jbguardarNota)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbBuscarNotas)
+                                .addGap(83, 83, 83)
                                 .addComponent(jbSalirMenuNotas))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -110,6 +121,11 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
                 .addGap(154, 154, 154)
                 .addComponent(jLabel7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(261, Short.MAX_VALUE)
+                    .addComponent(jbguardarNota1)
+                    .addGap(58, 58, 58)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,22 +141,34 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbguardarNota)
+                    .addComponent(jbBuscarNotas)
                     .addComponent(jbSalirMenuNotas))
                 .addGap(6, 6, 6))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(239, Short.MAX_VALUE)
+                    .addComponent(jbguardarNota1)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbguardarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarNotaActionPerformed
+    private void jbBuscarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarNotasActionPerformed
+        cargaMaterias();
+    }//GEN-LAST:event_jbBuscarNotasActionPerformed
 
+    private void jbSalirMenuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirMenuNotasActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbSalirMenuNotasActionPerformed
+
+    private void jbguardarNota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarNota1ActionPerformed
         int filaseleccionada = jTable1.getSelectedRow();
         if (filaseleccionada != -1) {
             Alumno a = (Alumno) jbcAlumnos.getSelectedItem();
             String idmateriaStr = (String) tablanotas.getValueAt(filaseleccionada, 0);
             String notaStr = (String) tablanotas.getValueAt(filaseleccionada, 2);
-            
+
             Integer idmateria = Integer.parseInt(idmateriaStr);
             Integer nota = Integer.parseInt(notaStr);
             inscrData.actualizarNota(a.getIdAlumno(), idmateria, nota);
@@ -149,12 +177,7 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una nota");
         }
-    }//GEN-LAST:event_jbguardarNotaActionPerformed
-
-    private void jbSalirMenuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirMenuNotasActionPerformed
-        dispose();
-    }//GEN-LAST:event_jbSalirMenuNotasActionPerformed
-
+    }//GEN-LAST:event_jbguardarNota1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
@@ -162,9 +185,10 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbBuscarNotas;
     private javax.swing.JButton jbSalirMenuNotas;
     private javax.swing.JComboBox<Alumno> jbcAlumnos;
-    private javax.swing.JButton jbguardarNota;
+    private javax.swing.JButton jbguardarNota1;
     // End of variables declaration//GEN-END:variables
 
     private void cargaAlumnos() {
@@ -173,9 +197,17 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
         }
     }
 
+    private void cargaMaterias() {
+        Alumno seleccionado = (Alumno) jbcAlumnos.getSelectedItem();
+        List<Materia> lista = inscrData.obtenerMateriasSICursadas(seleccionado.getIdAlumno());
+        for (Materia m : lista) {
+            tablanotas.addRow(new Object[]{m.getIdMateria(), m.getNombre(), " "}); //acordarse de vincular la entidad ALUMNO con el comboBox
+        }
+
+    }
+
     private void armarCabeceraTabla() {
         ArrayList<Object> cabecera = new ArrayList<>();
-//        cabecera.add("Id Alumno");
         cabecera.add("Id Materia");
         cabecera.add("Nombre");
         cabecera.add("Nota");
