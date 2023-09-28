@@ -199,7 +199,7 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
         Alumno seleccionado = (Alumno) jbcAlumnos.getSelectedItem();
         List<Materia> lista = inscrData.obtenerMateriasSICursadas(seleccionado.getIdAlumno());
         for (Materia m : lista) {
-            tablanotas.addRow(new Object[]{m.getIdMateria(), m.getNombre(), null}); //acordarse de vincular la entidad ALUMNO con el comboBox
+            tablanotas.addRow(new Object[]{m.getIdMateria(), m.getNombre() }); 
         }
 
     }
