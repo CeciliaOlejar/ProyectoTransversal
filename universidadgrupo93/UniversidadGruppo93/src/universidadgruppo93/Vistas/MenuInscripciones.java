@@ -2,7 +2,6 @@ package universidadgruppo93.Vistas;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import universidadgruppo93.AccesoADatos.AlumnoData;
 import universidadgruppo93.AccesoADatos.MateriaData;
@@ -223,7 +222,7 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
             borrarFila();
         
         }else{
-//            JPopupMenu.( "Debe seleccionar una fila");
+            
         }
     }//GEN-LAST:event_jbNuevoAlumnoActionPerformed
 

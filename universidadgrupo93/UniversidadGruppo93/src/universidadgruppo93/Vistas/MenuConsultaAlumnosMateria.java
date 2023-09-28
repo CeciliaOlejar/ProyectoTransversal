@@ -149,7 +149,6 @@ private ArrayList<Materia> listaM;
 
     private void jbBuscarMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarMateriasActionPerformed
         borrarFila();
-        
         cargaAlumno();
     }//GEN-LAST:event_jbBuscarMateriasActionPerformed
 

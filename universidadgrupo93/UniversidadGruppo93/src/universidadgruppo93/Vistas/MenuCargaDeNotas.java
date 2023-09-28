@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadgruppo93.Vistas;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadgruppo93.AccesoADatos.AlumnoData;
 import universidadgruppo93.Entidades.Materia;
@@ -20,19 +17,21 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
 
     private AlumnoData aluData;
     private MateriaData mateData;
-
+    private InscripcionData inscrData;
     private DefaultTableModel tablanotas;
 
     public MenuCargaDeNotas() {
         initComponents();
 
         aluData = new AlumnoData();
+        inscrData = new InscripcionData();
         listaAlu = (ArrayList<Alumno>) aluData.listarAlumnos();
         tablanotas = new DefaultTableModel();
         mateData = new MateriaData();
 
         cargaAlumnos();
         armarCabeceraTabla();
+        agregarFila();
     }
 
     @SuppressWarnings("unchecked")
@@ -96,7 +95,7 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jbguardarNota)
-                                .addGap(89, 89, 89)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbSalirMenuNotas))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -127,7 +126,8 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbguardarNota)
-                    .addComponent(jbSalirMenuNotas)))
+                    .addComponent(jbSalirMenuNotas))
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -135,6 +135,23 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
 
     private void jbguardarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarNotaActionPerformed
 
+        int filaseleccionada = jTable1.getSelectedRow();
+        if (filaseleccionada != -1) {
+            agregarFila();
+
+            Alumno a = (Alumno) jbcAlumnos.getSelectedItem();
+            String idmateriaStr = (String) tablanotas.getValueAt(filaseleccionada, 0);
+            String notaStr = (String) tablanotas.getValueAt(filaseleccionada, 2);
+
+// Luego, puedes convertir estos Strings a Integer si es necesario
+            Integer idmateria = Integer.parseInt(idmateriaStr);
+            Integer nota = Integer.parseInt(notaStr);
+            inscrData.actualizarNota(a.getIdAlumno(), idmateria, nota);
+
+            borrarFila();
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una nota");
+        }
     }//GEN-LAST:event_jbguardarNotaActionPerformed
 
     private void jbSalirMenuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirMenuNotasActionPerformed
@@ -161,12 +178,14 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
 
     private void armarCabeceraTabla() {
         ArrayList<Object> cabecera = new ArrayList<>();
-        cabecera.add("Id");
+//        cabecera.add("Id Alumno");
+        cabecera.add("Id Materia");
         cabecera.add("Nombre");
         cabecera.add("Nota");
         for (Object it : cabecera) {
             tablanotas.addColumn(it);
         }
+
         jTable1.setModel(tablanotas);
     }
 
@@ -177,4 +196,10 @@ public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
             tablanotas.removeRow(i);
         }
     }
+
+    private void agregarFila() {
+        Object[] fila = new Object[]{"", "", ""};
+        tablanotas.addRow(fila);
+    }
+
 }
