@@ -216,7 +216,7 @@ public class InscripcionData {
     }
 
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
-        String sql = "UPDATE inscripcion SET nota =?  WHERE idMateria=? AND idAlumno= ?";
+        String sql = "UPDATE inscripcion SET nota = ?  WHERE idMateria=? AND idAlumno= ?";
         PreparedStatement ps = null;
         Alumno alum = new Alumno();
         Materia materia = new Materia();
