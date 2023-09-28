@@ -33,7 +33,6 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
 
         cargaAlumnos();
         armarCabeceraTabla();
-
     }
 
     /**

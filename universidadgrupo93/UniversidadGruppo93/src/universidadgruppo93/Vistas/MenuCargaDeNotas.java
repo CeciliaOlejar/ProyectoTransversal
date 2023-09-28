@@ -15,25 +15,26 @@ import universidadgruppo93.AccesoADatos.InscripcionData;
 import universidadgruppo93.AccesoADatos.MateriaData;
 
 public class MenuCargaDeNotas extends javax.swing.JInternalFrame {
-private ArrayList<Materia> listaM;
-private ArrayList<Alumno> listaA;
 
-private AlumnoData aluData;
-private MateriaData mateData;
+    private ArrayList<Alumno> listaAlu;
 
-private DefaultTableModel tablanotas;
-   
+    private AlumnoData aluData;
+    private MateriaData mateData;
+
+    private DefaultTableModel tablanotas;
+
     public MenuCargaDeNotas() {
         initComponents();
-    
-   aluData = new AlumnoData();
-        listaA = (ArrayList<Alumno>) aluData.listarAlumnos();
+
+        aluData = new AlumnoData();
+        listaAlu = (ArrayList<Alumno>) aluData.listarAlumnos();
         tablanotas = new DefaultTableModel();
         mateData = new MateriaData();
 
         cargaAlumnos();
         armarCabeceraTabla();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -55,8 +56,6 @@ private DefaultTableModel tablanotas;
                 jbguardarNotaActionPerformed(evt);
             }
         });
-
-        jbcAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alumno1", "Alumno2" }));
 
         jLabel2.setText("Selecciona un alumno:");
 
@@ -135,7 +134,7 @@ private DefaultTableModel tablanotas;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbguardarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarNotaActionPerformed
-    
+
     }//GEN-LAST:event_jbguardarNotaActionPerformed
 
     private void jbSalirMenuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirMenuNotasActionPerformed
@@ -150,30 +149,31 @@ private DefaultTableModel tablanotas;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jbSalirMenuNotas;
-    private javax.swing.JComboBox<String> jbcAlumnos;
+    private javax.swing.JComboBox<Alumno> jbcAlumnos;
     private javax.swing.JButton jbguardarNota;
     // End of variables declaration//GEN-END:variables
 
     private void cargaAlumnos() {
-        for (Alumno item : listaA) {
-            jbcAlumnos.addItem(item);//no se que pasa aca
+        for (Alumno item1 : listaAlu) {
+            jbcAlumnos.addItem(item1); //acordarse de vincular la entidad ALUMNO con el comboBox
         }
     }
 
     private void armarCabeceraTabla() {
-         ArrayList<Object> cabecera = new ArrayList<>();
+        ArrayList<Object> cabecera = new ArrayList<>();
         cabecera.add("Id");
         cabecera.add("Nombre");
         cabecera.add("Nota");
-        for (Object it: cabecera){
+        for (Object it : cabecera) {
             tablanotas.addColumn(it);
         }
         jTable1.setModel(tablanotas);
     }
-    private void borrarFila(){
-        int indice = tablanotas.getRowCount() -1;
-        
-        for (int i = indice; i>=0; i--){
+
+    private void borrarFila() {
+        int indice = tablanotas.getRowCount() - 1;
+
+        for (int i = indice; i >= 0; i--) {
             tablanotas.removeRow(i);
         }
     }
