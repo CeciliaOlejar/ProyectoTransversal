@@ -63,7 +63,7 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "Error al insertar alumno.");
         }
     }
-    
+
     public Alumno buscarAlumno(int id) {
         Alumno alumno = null;
         String sql = "SELECT dni, apellido, nombre, fechaNac FROM alumno WHERE "
@@ -93,7 +93,7 @@ public class AlumnoData {
 
         return alumno;
     }
-    
+
     public Alumno buscarAlumnoPorDni(int dni) {
         Alumno alumno = null;
         String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNac FROM alumno WHERE "
@@ -123,9 +123,8 @@ public class AlumnoData {
 
         return alumno;
     }
-    
-    //List<Alumno> listarAlumnos();
 
+    //List<Alumno> listarAlumnos();
     public void modificarAlumno(Alumno alumno) {
 
         String sql = "UPDATE alumno SET apellido=?, nombre=?, "
@@ -171,32 +170,34 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "Error al eliminar un alumno");
         }
     }
-    
-    public ArrayList<Alumno> listarAlumnos(){
-        ArrayList<Alumno> listarAlumnos = new ArrayList<Alumno>();
-        
-        String sql = "SELECT * from alumno";
+
+    public List<Alumno> listarAlumnos() {
+        List<Alumno> listarAlumnos = new ArrayList<Alumno>();
+
+        String sql = "SELECT * from alumno WHERE estado = 1";
         PreparedStatement ps = null;
-        
+
         try {
-           ps = con.prepareStatement(sql);
-           ResultSet rs = ps.executeQuery();
-           
-           while(rs.next()){
-               Alumno alumno = new Alumno();
-               alumno.setDni(rs.getInt("dni"));
-               alumno.setApellido(rs.getString("apellido"));
-               alumno.setNombre(rs.getString("nombre"));
-               alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
-               alumno.setActivo(rs.getBoolean("estado"));
-               listarAlumnos.add(alumno);
-           }
-           ps.close();
-           JOptionPane.showMessageDialog(null, "Su lista de alumnos es: "+listarAlumnos);
-           
+            ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Alumno alumno = new Alumno();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+
+                alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                alumno.setActivo(rs.getBoolean("estado"));
+                listarAlumnos.add(alumno);
+            }
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Exito al encontrar alumnos");
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error haciendo la lista de alumnos");
-        }        
+        }
         return listarAlumnos;
     }
 }

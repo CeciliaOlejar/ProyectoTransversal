@@ -2,6 +2,7 @@ package universidadgruppo93.Vistas;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import universidadgruppo93.AccesoADatos.AlumnoData;
 import universidadgruppo93.AccesoADatos.MateriaData;
@@ -25,7 +26,7 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
         initComponents();
 
         aluData = new AlumnoData();
-        listaA = aluData.listarAlumnos();
+        listaA = (ArrayList<Alumno>) aluData.listarAlumnos();
         tablamodelo = new DefaultTableModel();
         inscripData = new InscripcionData();
         mateData = new MateriaData();
@@ -103,6 +104,11 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
         });
 
         jRadioMateriasNoInscriptas.setText("Materias no inscriptas");
+        jRadioMateriasNoInscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioMateriasNoInscriptasActionPerformed(evt);
+            }
+        });
 
         jbNuevoAlumno.setText("Inscribir");
         jbNuevoAlumno.setEnabled(false);
@@ -188,7 +194,16 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarAlumnoActionPerformed
-        // TODO add your handling code here:
+        int filaseleccionada = jTable1.getSelectedRow();
+        if(filaseleccionada !=-1){
+            Alumno a = (Alumno) jbcAlumnos.getSelectedItem();
+            int idMateria = (Integer) tablamodelo.getValueAt(filaseleccionada,0);
+            
+            inscripData.borrarInscripcionMateriaAlumno(a.getIdAlumno(),idMateria);
+            borrarFila();
+        }else{
+//            JPopupMenu.( "Debe seleccionar una fila");
+        }
     }//GEN-LAST:event_jbEliminarAlumnoActionPerformed
 
     private void jbSalirMenuAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirMenuAlumnosActionPerformed
@@ -196,16 +211,38 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirMenuAlumnosActionPerformed
 
     private void jbNuevoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoAlumnoActionPerformed
-        // TODO add your handling code here:
+        int filaseleccionada = jTable1.getSelectedRow();
+        if(filaseleccionada !=-1){
+            Alumno a = (Alumno) jbcAlumnos.getSelectedItem();
+            
+            int idMateria = (Integer) tablamodelo.getValueAt(filaseleccionada,0);
+            String nombreMateria = (String) tablamodelo.getValueAt(filaseleccionada,1);
+            int anio = (Integer)tablamodelo.getValueAt(filaseleccionada,1);
+            Materia materiaselect = new Materia(idMateria,nombreMateria,anio,true);
+            Inscripcion incrisp = new Inscripcion(a,materiaselect,0);
+            inscripData.guardarInscripcion(incrisp);
+            borrarFila();
+        
+        }else{
+//            JPopupMenu.( "Debe seleccionar una fila");
+        }
     }//GEN-LAST:event_jbNuevoAlumnoActionPerformed
 
     private void jRadioMateriasInsriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioMateriasInsriptasActionPerformed
         borrarFila();
         jRadioMateriasNoInscriptas.setSelected(false);
         cargaDatosInscriptos();
-        jbNuevoAlumno.setEnabled(true);
-        jbEliminarAlumno.setEnabled(false);
+        jbNuevoAlumno.setEnabled(false);
+        jbEliminarAlumno.setEnabled(true);
     }//GEN-LAST:event_jRadioMateriasInsriptasActionPerformed
+
+    private void jRadioMateriasNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioMateriasNoInscriptasActionPerformed
+       borrarFila();
+       jRadioMateriasInsriptas.setSelected(false);
+       cargaDatosNoInscriptos();
+       jbNuevoAlumno.setEnabled(true);
+       jbEliminarAlumno.setEnabled(false);
+    }//GEN-LAST:event_jRadioMateriasNoInscriptasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -259,7 +296,7 @@ public class MenuInscripciones extends javax.swing.JInternalFrame {
     private void cargaDatosInscriptos(){
         Alumno seleccionado = (Alumno)jbcAlumnos.getSelectedItem();
         List <Materia> lista = inscripData.obtenerMateriasSICursadas(seleccionado.getIdAlumno());
-        for (Materia m: listaM){
+        for (Materia m: lista){
             tablamodelo.addRow(new Object[] {m.getIdMateria(), m.getNombre(),m.getAnioMateria()});
         }
     
